@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IndicadoresService } from '../../services/indicadores.service';
+import { Indicador } from '../../interfaces/indicador.interface';
 
 @Component({
   selector: 'app-listado',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListadoComponent implements OnInit {
 
-  constructor() { }
+
+  indicadores: Indicador[] = [];
+  
+  
+
+  
+
+  constructor( private indicadoresService: IndicadoresService ) { }
 
   ngOnInit(): void {
-  }
 
+    this.indicadoresService.getIndicadores()
+        .subscribe( indicadores => this.indicadores = indicadores )    
+      
+ 
+}
 }
